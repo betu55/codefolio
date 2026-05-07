@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Iosevka Charon Mono", system-ui;
+}
+
+// Global CSS variables for theme 
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+}
+
+.dark {
+  --bg: #0e1116;
+  --text: #f5f5f5;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  @apply bg-brand-light_bg text-brand-dark_txt transition-colors duration-300 ease-in-out;
+}
+
+.dark body {
+  @apply bg-brand-dark_bg text-brand-light_txt;
+}
+
+// Tailwind CSS classes for common styles 
+
+.lis {
+  @apply text-xl;
+}
+
+.text-color {
+  @apply text-gray-700;
+}
+
+.nav-color {
+  @apply md:dark:text-brand-light_txt md:text-brand-dark_txt text-brand-light_txt dark:text-brand-light_txt;
+}
+
+.acc-color {
+  @apply text-blue-400
+}
+
+.acc-color-ring{
+  @apply ring-1 ring-blue-400;
+}
+
+.social-icons {
+  @apply text-xl;
+}
+
+.linkedin {
+  @apply hover:text-brand-linkedin;
+}
+.github {
+  @apply hover:text-brand-github;
+}
+.twitter {
+  @apply hover:text-brand-twitter;
+}
+.my-title {
+  @apply text-lg font-semibold my-2 text-brand-dark_txt dark:text-brand-light_txt;
+}
+
+.edit-btn{
+  @apply inline-flex h-7 w-7 items-center justify-center rounded-md border border-brand-border_dark bg-brand-light_bg text-brand-dark_txt transition hover:scale-110 dark:border-brand-border_light dark:bg-brand-dark_bg dark:text-brand-light_txt;
+}
+
+.delete-btn{
+  @apply inline-flex h-7 w-7 items-center justify-center rounded-md border border-brand-delete_bg bg-brand-light_txt text-brand-delete_red transition hover:scale-110 hover:bg-brand-delete_bg dark:border-brand-delete_bg_dark dark:bg-brand-mac_bar_dark hover:dark:bg-brand-delete_bg_dark_hover hover:dark:bg-brand-delete_bg_dark_hover hover:dark:text-brand-dark_txt;
+
+}
+
+.card-item{
+  @apply border border-brand-border_dark dark:border-brand-border_light shadow-md rounded-xl h-full w-full min-h-48  align-middle flex flex-col md:flex-row shadow-md;
+}
+
+.main-container {
+  @apply h-full w-full flex flex-col items-center text-center pt-3 p-2 md:p-4 text-brand-dark_txt dark:text-brand-light_txt;
+}
+
+.main-container-start {
+  @apply justify-start;
+}
+
+.main-container-center {
+  @apply justify-center;
+}
+
+.flex-container {
+  @apply flex flex-wrap flex-col w-full m-4 text-brand-dark_txt dark:text-brand-light_txt md:flex-row justify-center items-center gap-3;
+}
+
+.pri-button {
+  @apply h-btn_h md:h-md_btn_h rounded-lg bg-brand-mac_close hover:bg-brand-mac_minimize text-brand-light_txt dark:hover:!bg-brand-mac_minimize_dark md:text-lg;
+}
+
+.out-button {
+  @apply py-2 rounded-lg bg-transparent border border-brand-border_dark text-brand-dark_txt dark:text-brand-light_txt dark:border-brand-border_light hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center;
+}
+
+.out-button-inverted{
+  @apply py-2 rounded-lg bg-transparent border border-brand-border_light text-brand-light_txt dark:text-brand-dark_txt dark:border-brand-border_dark hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center;
+}
+
+.input-field {
+  @apply w-full h-md_btn_h text-base rounded-xl bg-transparent border border-brand-border_dark dark:border-brand-border_light px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-mac_minimize/60 transition-colors duration-150 ease-in-out placeholder:text-brand-dark_txt_accent/60 italic dark:placeholder:text-brand-light_txt/40;
+}
+
+// Media queries
+
+@media screen and (min-width: 48rem) {
+  .med-width{
+    width: 90%;
+  }
+}
+
+// Animations
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg) translateY(0) translateX(0);
+  }
+  10% {
+    transform: rotate(14deg) translateY(-1px) translateX(-2px);
+  }
+  20% {
+    transform: rotate(-8deg) translateY(-2px) translateX(-3px);
+  }
+  30% {
+    transform: rotate(14deg) translateY(-3px) translateX(-3px);
+  }
+  40% {
+    transform: rotate(-4deg) translateY(-2px) translateX(-3px);
+  }
+  50% {
+    transform: rotate(10deg) translateY(-1px) translateX(-2px);
+  }
+  60% {
+    transform: rotate(0deg) translateY(0) translateX(-1px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0) translateX(0);
+  }
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 2s ease-in-out infinite;
+  transform-origin: 70% 70%;
+}
+
+// Navbar Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out;
+}
