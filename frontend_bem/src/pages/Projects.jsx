@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaPlus, FaTimes } from "react-icons/fa";
+import { FaPlus} from "react-icons/fa";
 import ProjectItem from "../components/ProjectItem.jsx";
 import Button from "../components/Button.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";

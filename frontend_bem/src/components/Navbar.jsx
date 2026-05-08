@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import Button from "./Button";
 import { isAdminLoggedIn } from "../utils/auth.js";
-import { FaUserCircle, FaExternalLinkAlt } from "react-icons/fa";
+import { FaUserCircle} from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
