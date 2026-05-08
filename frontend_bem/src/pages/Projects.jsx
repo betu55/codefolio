@@ -3,6 +3,7 @@ import { FaPlus, FaTimes } from "react-icons/fa";
 import ProjectItem from "../components/ProjectItem.jsx";
 import Button from "../components/Button.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";
+import { API_BASE_URL } from "../utils/api.js";
 
 
 const emptyProjectForm = {
@@ -25,7 +26,7 @@ const Projects = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("/api/projects");
+      const response = await fetch(`${API_BASE_URL}/api/projects`);
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -86,8 +87,8 @@ const Projects = () => {
     };
 
     const url = editingProject
-      ? `/api/projects/${editingProject.id}`
-      : "/api/projects";
+      ? `${API_BASE_URL}/api/projects/${editingProject.id}`
+      : `${API_BASE_URL}/api/projects`;
 
     const method = editingProject ? "PUT" : "POST";
 

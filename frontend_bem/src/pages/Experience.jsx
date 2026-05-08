@@ -5,6 +5,7 @@ import Button from "../components/Button.jsx";
 import Dropdown from "../components/Dropdown.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";
 import { formatDateKey, parseDateKey, parseDateRange } from "../utils/dateRange";
+import { API_BASE_URL } from "../utils/api.js";
 
 const emptyExperienceForm = {
   role: "",
@@ -32,7 +33,7 @@ const Experience = () => {
 
   const fetchExperiences = async () => {
     try{
-      const response = await fetch("/api/experiences");
+      const response = await fetch(`${API_BASE_URL}/api/experiences`);
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -109,8 +110,8 @@ const Experience = () => {
     };
 
     const url = editingExperience
-      ? `/api/experiences/${editingExperience.id}`
-      : "/api/experiences";
+      ? `${API_BASE_URL}/api/experiences/${editingExperience.id}`
+      : `${API_BASE_URL}/api/experiences`;
 
     const method = editingExperience ? "PUT" : "POST";
 
@@ -143,7 +144,7 @@ const Experience = () => {
     }
 
     try{
-      const response = await fetch(`/api/experiences/${experienceId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/experiences/${experienceId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("adminToken")}`,
