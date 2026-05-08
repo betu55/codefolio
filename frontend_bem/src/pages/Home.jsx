@@ -13,7 +13,7 @@ const Home = () => {
       message = "Good Morning";
     } else if (currentHour >= 12 && currentHour < 17) {
       message = "Good Afternoon";
-    } else if (currentHour >= 17 && currentHour < 23) {
+    } else if (currentHour >= 17 && currentHour < 24) {
       message = "Good Evening";
     } else {
       message = "Hello Midnight Maverick";

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MacCard from "../../components/MacCard";
+import { API_BASE_URL } from "../../utils/api.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Login = () => {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
