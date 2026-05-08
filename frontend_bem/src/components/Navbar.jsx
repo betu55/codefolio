@@ -37,14 +37,15 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleScroll = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
+    
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
