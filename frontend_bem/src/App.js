@@ -10,8 +10,6 @@ import Experience from "./pages/Experience.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
 
 const App = () => {
   return (
