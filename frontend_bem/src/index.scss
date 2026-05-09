@@ -173,3 +173,25 @@ body {
 .animate-fade-in-up {
   animation: fadeInUp 0.3s ease-out;
 }
+
+@keyframes spinnerPulse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-shell {
+  @apply flex min-h-52 w-full flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-brand-border_dark/70 bg-brand-light_bg/60 px-6 py-10 text-brand-dark_txt dark:border-brand-border_light/70 dark:bg-brand-dark_bg/40 dark:text-brand-light_txt;
+}
+
+.spinner-orbit {
+  @apply h-14 w-14 rounded-full border-4 border-brand-border_dark/30 border-t-brand-mac_minimize dark:border-brand-border_light/25 dark:border-t-brand-mac_minimize_dark;
+  animation: spinnerPulse 0.85s linear infinite;
+}
+
+.spinner-label {
+  @apply text-sm uppercase tracking-[0.3em] text-brand-dark_txt_accent dark:text-brand-light_txt/70;
+}

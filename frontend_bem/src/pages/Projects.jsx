@@ -3,6 +3,7 @@ import { FaPlus} from "react-icons/fa";
 import ProjectItem from "../components/ProjectItem.jsx";
 import Button from "../components/Button.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 import { API_BASE_URL } from "../utils/api.js";
 
 
@@ -18,6 +19,7 @@ const emptyProjectForm = {
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
   const [projectForm, setProjectForm] = useState(emptyProjectForm);
@@ -25,6 +27,8 @@ const Projects = () => {
   const isAdmin = Boolean(localStorage.getItem("adminToken"));
 
   const fetchProjects = async () => {
+    setIsLoading(true);
+
     try {
       const response = await fetch(`${API_BASE_URL}/api/projects`);
 
@@ -37,6 +41,8 @@ const Projects = () => {
       console.log("Fetched projects:", data);
     } catch (error) {
       console.error("Failed to fetch projects:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -150,22 +156,26 @@ const Projects = () => {
       </section>
 
       <section className="w-full max-w-6xl flex flex-col gap-5">
-        {projects.map((project) => (
-          <ProjectItem
-            key={project.id}
-            id={project.id}
-            title={project.name}
-            description={project.description}
-            stack={project.stack}
-            githubUrl={project.githubUrl}
-            liveUrl={project.liveUrl}
-            status={project.status}
-            date={project.dateWorkedOn}
-            isAdmin={isAdmin}
-            onEdit={() => openEditProjectModal(project)}
-            onDelete={() => handleDeleteProject(project.id)}
-          />
-        ))}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          projects.map((project) => (
+            <ProjectItem
+              key={project.id}
+              id={project.id}
+              title={project.name}
+              description={project.description}
+              stack={project.stack}
+              githubUrl={project.githubUrl}
+              liveUrl={project.liveUrl}
+              status={project.status}
+              date={project.dateWorkedOn}
+              isAdmin={isAdmin}
+              onEdit={() => openEditProjectModal(project)}
+              onDelete={() => handleDeleteProject(project.id)}
+            />
+          ))
+        )}
       </section>
 
       {isAdmin && (

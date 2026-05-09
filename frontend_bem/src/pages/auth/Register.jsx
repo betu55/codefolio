@@ -73,7 +73,7 @@ const Register = () => {
 
   return (
     <div className="flex justify-center items-center h-full w-full p-4">
-      <MacCard custClass="w-[94%] md:w-1/2 h-fit flex flex-col justify-center">
+      <MacCard custClass="w-full md:w-[30rem] h-[30rem] flex flex-col justify-center">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 text-left w-full h-full md:p-4"
@@ -129,7 +129,7 @@ const Register = () => {
             {isSubmitting ? "Registering..." : "Register"}
           </button>
           <div>
-            <p className="text-sm md:text-base text-brand-dark_txt dark:text-brand-light_txt">
+            <p className="text-sm mt-4 md:text-base text-brand-dark_txt dark:text-brand-light_txt">
               Already have an account?{" "}
               <Link to="/login" className="text-blue-500 hover:underline">
                 Login here
