@@ -37,22 +37,9 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (isOpen) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isOpen]);
-
   const openAccountModal = () => {
     setIsModalOpen(true);
+    setIsOpen(false);
   };
 
   return (
@@ -114,14 +101,14 @@ const Navbar = () => {
       </div>
       {/* Mobile Menu */}
       <div
-        className={`absolute left-0 rounded-bl-2xl rounded-br-2xl w-full bg-brand-dark_bg dark:text-brand-dark_txt dark:bg-brand-light_bg transition-all duration-300 ease-in-out z-10 transform ${
+        className={`absolute overflow-y-auto left-0 rounded-bl-2xl rounded-br-2xl w-full bg-brand-dark_bg dark:text-brand-dark_txt dark:bg-brand-light_bg transition-all duration-300 ease-in-out z-10 transform ${
           isOpen
             ? "opacity-100 translate-y-0 visible scale-100"
             : "opacity-0 -translate-y-2 invisible scale-100"
         }`}
       >
         <ul
-          className={`flex flex-col items-center space-y-4 py-4 rounded-b-xl bg-brand-dark_bg dark:bg-brand-light_bg`}
+          className={`flex flex-col items-center  space-y-4 py-4 rounded-b-xl bg-brand-dark_bg dark:bg-brand-light_bg`}
         >
           {["Home", "About Me", "Projects", "Experience", "Contact"].map(
             (item, index) => (

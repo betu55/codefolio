@@ -6,6 +6,7 @@ import Dropdown from "../components/Dropdown.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";
 import { formatDateKey, parseDateKey, parseDateRange } from "../utils/dateRange";
 import { API_BASE_URL } from "../utils/api.js";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const emptyExperienceForm = {
   role: "",
@@ -25,6 +26,7 @@ const emptyExperienceForm = {
 const Experience = () => { 
 
   const [experiences, setExperiences] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingExperience, setEditingExperience] = useState(null);
   const [experienceForm, setExperienceForm] = useState(emptyExperienceForm);
@@ -32,6 +34,8 @@ const Experience = () => {
   const isAdmin = Boolean(localStorage.getItem("adminToken"));
 
   const fetchExperiences = async () => {
+    setIsLoading(true);
+
     try{
       const response = await fetch(`${API_BASE_URL}/api/experiences`);
 
@@ -44,6 +48,8 @@ const Experience = () => {
       console.log("Fetched experiences:", data);
     } catch (error) {
       console.error("Failed to fetch experiences:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -173,26 +179,30 @@ const Experience = () => {
       </section>
 
       <section className="w-full max-w-6xl flex flex-col gap-5">
-        {experiences.map((exp) => (
-          <ExperienceItem
-            key={exp.id}
-            role={exp.role}
-            company={exp.company}
-            location={exp.location}
-            employmentType={exp.employmentType}
-            startDate={exp.startDate}
-            endDate={exp.endDate}
-            isCurrent={exp.isCurrent}
-            description={exp.description}
-            highlights={exp.highlights}
-            stack={exp.stack}
-            companyUrl={exp.companyUrl}
-            logoUrl={exp.logoUrl}
-            isAdmin={isAdmin}
-            onEdit={() => openEditExperienceModal(exp)}
-            onDelete={() => handleDeleteExperience(exp.id)}
-          />
-        ))}
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          experiences.map((exp) => (
+            <ExperienceItem
+              key={exp.id}
+              role={exp.role}
+              company={exp.company}
+              location={exp.location}
+              employmentType={exp.employmentType}
+              startDate={exp.startDate}
+              endDate={exp.endDate}
+              isCurrent={exp.isCurrent}
+              description={exp.description}
+              highlights={exp.highlights}
+              stack={exp.stack}
+              companyUrl={exp.companyUrl}
+              logoUrl={exp.logoUrl}
+              isAdmin={isAdmin}
+              onEdit={() => openEditExperienceModal(exp)}
+              onDelete={() => handleDeleteExperience(exp.id)}
+            />
+          ))
+        )}
       </section>
 
       {isAdmin && (
@@ -221,7 +231,7 @@ const Experience = () => {
               >
                 ×
               </Button>
-              
+
               <label className="flex flex-col gap-2">
                 Role
                 <input
