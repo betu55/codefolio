@@ -40,11 +40,16 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/projects/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/experiences/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/skills/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/projects/**").hasAnyRole("ADMIN", "SUPERUSER")
                         .requestMatchers(HttpMethod.PUT, "/api/projects/**").hasAnyRole("ADMIN", "SUPERUSER")
                         .requestMatchers(HttpMethod.DELETE, "/api/projects/**").hasAnyRole("ADMIN", "SUPERUSER")
+                        .requestMatchers(HttpMethod.POST, "/api/experiences/**").hasAnyRole("ADMIN", "SUPERUSER")
+                        .requestMatchers(HttpMethod.PUT, "/api/experiences/**").hasAnyRole("ADMIN", "SUPERUSER")
+                        .requestMatchers(HttpMethod.DELETE, "/api/experiences/**").hasAnyRole("ADMIN", "SUPERUSER")
                         .anyRequest().permitAll()
                 )
                 .authenticationProvider(authenticationProvider())
@@ -73,7 +78,12 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://codefolio-zeta.vercel.app"));
+        configuration.setAllowedOriginPatterns(List.of(
+                "http://localhost:3000",
+                "http://localhost:3001",
+                "https://codefolio-zeta.vercel.app",
+                "https://*.vercel.app"
+        ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
