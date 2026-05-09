@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MacCard from "../../components/MacCard";
+import { API_BASE_URL } from "../../utils/api.js";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Register = () => {
     setSuccessMessage("");
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
