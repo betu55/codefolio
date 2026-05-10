@@ -308,7 +308,6 @@ const Experience = () => {
               </label>
 
               <div className="flex flex-col gap-2">
-                {console.log(experienceForm.startDate, experienceForm.endDate)}
                 <DateRangePicker
                   label="Date range"
                   value={`${experienceForm.startDate || null}|${experienceForm.endDate || null}`}

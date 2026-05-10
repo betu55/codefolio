@@ -112,7 +112,7 @@ body {
 }
 
 .input-field {
-  @apply w-full h-md_btn_h text-base rounded-xl bg-transparent border border-brand-border_dark dark:border-brand-border_light px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-mac_minimize/60 transition-colors duration-150 ease-in-out placeholder:text-brand-dark_txt_accent/60 italic dark:placeholder:text-brand-light_txt/40;
+  @apply w-full h-md_btn_h text-base rounded-xl bg-transparent border border-brand-border_dark dark:border-brand-border_light px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-mac_minimize/60 transition-colors duration-150 ease-in-out placeholder:text-brand-dark_txt_accent/60 dark:placeholder:text-brand-light_txt/40;
 }
 
 // Media queries
