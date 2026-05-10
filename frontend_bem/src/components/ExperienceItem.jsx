@@ -54,7 +54,7 @@ const ExperienceItem = ({
                 <img
                   src={logoUrl}
                   alt={`${company} logo`}
-                  className="w-20 md:w-28 h-auto my-2 rounded-md"
+                  className="w-[10rem] md:w-[12rem] my-2 rounded-md"
                 />
               </div>
               <div className="flex flex-col items-center justify-center gap-2">
