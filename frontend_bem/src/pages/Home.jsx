@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Button from "../components/Button";
-import resumePdf from "../assets/Bemenet_Bekele_Resume.pdf";
 
 const Home = () => {
   const [greeting, setGreeting] = useState(""); // State to store the greeting
@@ -39,14 +38,14 @@ const Home = () => {
         and database-driven tools.
       </p>
       <div className="flex-container">
-        <a
-          href={resumePdf}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="out-button w-60 inline-flex items-center justify-center"
+        <Button
+          text="Resume"
+          external={true}
+          link="https://docs.google.com/document/d/1f_LbcdsvSzF8I9h3I3cms9JxBQ9m_c3u8udh3k0WpS8/edit?usp=sharing"
+          className="out-button w-60 inline"
         >
           Resume
-        </a>
+        </Button>
         <Button
           text="Experience"
           link="/experience"
