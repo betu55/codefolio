@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Button = ({
   link,
   className,
+  disabled = false,
   onClick,
   children,
   external = false,
@@ -19,7 +20,7 @@ const Button = ({
   }
 
   return (
-    <button type={type} className={className} onClick={onClick} {...props}>
+    <button type={type} disabled={disabled} className={className} onClick={onClick} {...props}>
       {children}
     </button>
   );

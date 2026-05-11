@@ -36,6 +36,9 @@ module.exports = {
           delete_bg_dark: "#775151",
           delete_bg_dark_hover: "#cc6161",
           delete_red: "#e55555",
+          accepted: "#99F7AB",
+          rejected: "#FF5E5B",
+          pending: "#FFD275 ",
         },
       },
       animation: {

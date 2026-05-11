@@ -148,7 +148,7 @@ const Projects = () => {
   return (
     <div className="main-container main-container-start gap-6 px-4 md:px-8 py-6">
       <section className="w-full max-w-6xl text-left">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Projects</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Projects</h1>
         <p className="text-lg md:text-xl leading-none max-w-3xl">
           A collection of projects I have worked on, focused on clean
           interfaces, practical features, and maintainable code.
@@ -189,115 +189,117 @@ const Projects = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <form
-            onSubmit={handleSubmitProject}
-            className="relative w-full max-w-2xl h-5/6 overflow-y-auto rounded-2xl border border-brand-border_dark dark:border-brand-border_light bg-brand-light_bg dark:bg-brand-dark_bg p-5 text-left shadow-xl"
-          >
-            <h2 className="text-2xl font-bold mb-5">
-              {editingProject ? "Edit Project" : "Add Project"}
-            </h2>
+          <div className="relative w-full max-w-2xl h-5/6">
+            <Button
+              onClick={closeProjectModal}
+              className="delete-btn absolute right-6 top-6 z-30 flex h-10 w-10 items-center justify-center"
+            >
+              ×
+            </Button>
+            <form
+              onSubmit={handleSubmitProject}
+              className="w-full max-w-2xl h-5/6 overflow-y-auto rounded-2xl border border-brand-border_dark dark:border-brand-border_light bg-brand-light_bg dark:bg-brand-dark_bg p-5 text-left shadow-xl"
+            >
+              <h2 className="text-2xl font-bold mb-5">
+                {editingProject ? "Edit Project" : "Add Project"}
+              </h2>
 
-            <div className="grid gap-4">
-              <Button
-                onClick={closeProjectModal}
-                className="delete-btn absolute right-5 top-5 px-4 py-4"
-              >
-                ×
-              </Button>
+              <div className="grid gap-4">
 
-              <label className="flex flex-col gap-2">
-                Project name
-                <input
-                  name="name"
-                  value={projectForm.name}
-                  onChange={handleInputChange}
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                  required
-                />
-              </label>
+                <label className="flex flex-col gap-2">
+                  Project name
+                  <input
+                    name="name"
+                    value={projectForm.name}
+                    onChange={handleInputChange}
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                    required
+                  />
+                </label>
 
-              <label className="flex flex-col gap-2">
-                Status
-                <input
-                  name="status"
-                  value={projectForm.status}
-                  onChange={handleInputChange}
-                  placeholder="Full Stack, Frontend, Developer Tool..."
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                />
-              </label>
+                <label className="flex flex-col gap-2">
+                  Status
+                  <input
+                    name="status"
+                    value={projectForm.status}
+                    onChange={handleInputChange}
+                    placeholder="Full Stack, Frontend, Developer Tool..."
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                  />
+                </label>
 
-              <label className="flex flex-col gap-2">
-                Description
-                <textarea
-                  name="description"
-                  value={projectForm.description}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                  required
-                />
-              </label>
+                <label className="flex flex-col gap-2">
+                  Description
+                  <textarea
+                    name="description"
+                    value={projectForm.description}
+                    onChange={handleInputChange}
+                    rows="4"
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                    required
+                  />
+                </label>
 
-              <div className="flex flex-col gap-2">
-                <DateRangePicker
-                  label="Date range"
-                  value={projectForm.dateWorkedOn}
-                  onChange={(nextValue) =>
-                    setProjectForm((currentForm) => ({
-                      ...currentForm,
-                      dateWorkedOn: nextValue,
-                    }))
-                  }
-                  placeholder="Select the project timeline"
-                />
+                <div className="flex flex-col gap-2">
+                  <DateRangePicker
+                    label="Date range"
+                    value={projectForm.dateWorkedOn}
+                    onChange={(nextValue) =>
+                      setProjectForm((currentForm) => ({
+                        ...currentForm,
+                        dateWorkedOn: nextValue,
+                      }))
+                    }
+                    placeholder="Select the project timeline"
+                  />
+                </div>
+
+                <label className="flex flex-col gap-2">
+                  Tech stack ('/' separated)
+                  <input
+                    name="stack"
+                    value={projectForm.stack}
+                    onChange={handleInputChange}
+                    placeholder="React/ Spring Boot/ MySQL"
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  GitHub URL
+                  <input
+                    name="githubUrl"
+                    value={projectForm.githubUrl}
+                    onChange={handleInputChange}
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Live URL
+                  <input
+                    name="liveUrl"
+                    value={projectForm.liveUrl}
+                    onChange={handleInputChange}
+                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                  />
+                </label>
               </div>
 
-              <label className="flex flex-col gap-2">
-                Tech stack ('/' separated)
-                <input
-                  name="stack"
-                  value={projectForm.stack}
-                  onChange={handleInputChange}
-                  placeholder="React/ Spring Boot/ MySQL"
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                GitHub URL
-                <input
-                  name="githubUrl"
-                  value={projectForm.githubUrl}
-                  onChange={handleInputChange}
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Live URL
-                <input
-                  name="liveUrl"
-                  value={projectForm.liveUrl}
-                  onChange={handleInputChange}
-                  className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                />
-              </label>
-            </div>
-
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                type="button"
-                onClick={closeProjectModal}
-                className="out-button px-5 py-2"
-              >
-                Cancel
-              </button>
-              <button type="submit" className="out-button px-5 py-2">
-                {editingProject ? "Save Changes" : "Add Project"}
-              </button>
-            </div>
-          </form>
+              <div className="mt-6 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={closeProjectModal}
+                  className="out-button px-5 py-2"
+                >
+                  Cancel
+                </button>
+                <button type="submit" className="out-button px-5 py-2">
+                  {editingProject ? "Save Changes" : "Add Project"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

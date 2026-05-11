@@ -23,11 +23,13 @@ public class CodefolioController {
     private final SkillService skillService;
     private final ProjectService projectService;
     private final ExperienceService experienceService;
+    private final JobTrackerService jobTrackerService;
 
-    public CodefolioController(SkillService skillService, ProjectService projectService, ExperienceService experienceService) {
+    public CodefolioController(SkillService skillService, ProjectService projectService, ExperienceService experienceService, JobTrackerService jobTrackerService) {
         this.skillService = skillService;
         this.projectService = projectService;
         this.experienceService = experienceService;
+        this.jobTrackerService = jobTrackerService;
     }
 
     @GetMapping("/api/skills")
@@ -37,6 +39,8 @@ public class CodefolioController {
         .collect(Collectors.toList());
     }
 
+
+    // Project endpoints
     @GetMapping("/api/projects")
     public List<ProjectDto> getAllProjects() {
       
@@ -67,6 +71,8 @@ public class CodefolioController {
       System.out.println("\nDeleted project with ID: " + id);   
     }
 
+
+    // Experience endpoints
     @GetMapping("/api/experiences")
     public List<ExperienceDto> getAllExperiences() {
       return experienceService.getAllExperiences().stream()
@@ -94,4 +100,31 @@ public class CodefolioController {
       System.out.println("\nDeleted experience with ID: " + id);
     }
 
+    // JobTracker endpoints
+    @GetMapping("/api/job-tracker")
+    public List<JobTrackerDto> getAllJobTrackers() {
+      return jobTrackerService.getAllJobTrackers().stream()
+        .map(JobTrackerDto::toDto)
+        .collect(Collectors.toList());
+    }
+
+    @PostMapping("/api/job-tracker")
+    public JobTrackerDto createJobTracker(@RequestBody JobTrackerDto jobTrackerDto) {
+      JobTracker createdJobTracker = jobTrackerService.createJobTracker(JobTrackerDto.toEntity(jobTrackerDto));
+      System.out.println("\nCreated job tracker with ID: " + createdJobTracker.getId());
+      return JobTrackerDto.toDto(createdJobTracker);
+    }
+
+    @PutMapping("/api/job-tracker/{id}")
+    public JobTrackerDto updateJobTracker(@PathVariable Long id, @RequestBody JobTrackerDto jobTrackerDto) {
+      JobTracker updatedJobTracker = jobTrackerService.updateJobTracker(id, JobTrackerDto.toEntity(jobTrackerDto));
+      System.out.println("\nUpdated job tracker with ID: " + id);
+      return JobTrackerDto.toDto(updatedJobTracker);
+    }
+
+    @DeleteMapping("/api/job-tracker/{id}")
+    public void deleteJobTracker(@PathVariable Long id) {
+      jobTrackerService.deleteJobTracker(id);
+      System.out.println("\nDeleted job tracker with ID: " + id);
+    }
 }                             

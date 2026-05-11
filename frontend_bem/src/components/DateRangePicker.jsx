@@ -3,8 +3,11 @@ import { FaChevronLeft, FaChevronRight, FaRegCalendarAlt } from "react-icons/fa"
 import {
   formatDateKey,
   formatDateRangeLabel,
+  firstDateLabel,
   parseDateRange,
+  parseDateKey,
   serializeDateRange,
+  formatDateLabel,
 } from "../utils/dateRange";
 import Button from "./Button";
 
@@ -61,15 +64,28 @@ const DateRangePicker = ({
   onChange,
   label = "Date range",
   placeholder = "Select date range",
+  mode = "range",
 }) => {
   const pickerRef = useRef(null);
-  const parsedRange = useMemo(() => parseDateRange(value), [value]);
+  const parsedRange = useMemo(() => {
+    if (mode === "single") {
+      return {
+        startDate: parseDateKey(value),
+
+        endDate: null,
+      };
+    }
+
+    return parseDateRange(value);
+  }, [value, mode]);
   const selectedStartDate = parsedRange.startDate;
-  const selectedStartTime = selectedStartDate ? selectedStartDate.getTime() : null;
+  const selectedStartTime = selectedStartDate
+    ? selectedStartDate.getTime()
+    : null;
   const [pickerMode, setPickerMode] = useState("calendar");
   const [isOpen, setIsOpen] = useState(false);
   const [visibleMonth, setVisibleMonth] = useState(
-    startOfMonth(parsedRange.startDate || new Date())
+    startOfMonth(parsedRange.startDate || new Date()),
   );
 
   const months = [
@@ -90,7 +106,7 @@ const DateRangePicker = ({
   const currentYear = new Date().getFullYear();
 
   const years = Array.from(
-    { length: currentYear - 1970 + 1},
+    { length: currentYear - 1970 + 1 },
     (_, index) => 1970 + index,
   );
 
@@ -118,9 +134,15 @@ const DateRangePicker = ({
   const handleClose = () => {
     setIsOpen(false);
     setPickerMode("calendar");
-  }
+  };
 
   const handleDayClick = (day) => {
+    if (mode === "single") {
+      onChange(formatDateKey(day));
+
+      return;
+    }
+
     const { startDate, endDate } = parsedRange;
 
     if (!startDate || endDate) {
@@ -148,7 +170,13 @@ const DateRangePicker = ({
     year: "numeric",
   });
 
-  const hasSelectedRange = value != null && value !== "" && value !== "|" && value !== "null|null";
+  const hasSelectedRange =
+    value != null && value !== "" && value !== "|" && value !== "null|null";
+
+  const displayLabel = 
+    mode === "single"
+      ? formatDateLabel(value, placeholder)
+      : formatDateRangeLabel(value, placeholder);
 
   return (
     <div className="relative" ref={pickerRef}>
@@ -164,7 +192,7 @@ const DateRangePicker = ({
               : "text-brand-dark_txt_accent/60 italic dark:text-brand-light_txt/40"
           }
         >
-          {formatDateRangeLabel(value, placeholder)}
+          {displayLabel}
         </span>
         <FaRegCalendarAlt className="shrink-0 text-brand-mac_close dark:text-brand-mac_close_dark" />
       </Button>
@@ -175,7 +203,7 @@ const DateRangePicker = ({
             <div className="mb-4 flex items-center justify-between">
               <div className="mr-2 flex items-center justify-between w-full">
                 <Button
-                  onClick={() =>
+                  onClick={() => {
                     setVisibleMonth(
                       (currentMonth) =>
                         new Date(
@@ -183,8 +211,8 @@ const DateRangePicker = ({
                           currentMonth.getMonth() - 1,
                           1,
                         ),
-                    )
-                  }
+                    );
+                  }}
                   className="out-button inline-flex h-9 w-9 items-center justify-center text-center rounded-lg"
                   aria-label="Previous month"
                 >
@@ -193,8 +221,11 @@ const DateRangePicker = ({
 
                 <Button
                   type="button"
+                  disabled={mode === "single"}
                   onClick={() => {
-                    pickerMode === "calendar" ? setPickerMode("month-year") : setPickerMode("calendar");
+                    pickerMode === "calendar"
+                      ? setPickerMode("month-year")
+                      : setPickerMode("calendar");
                   }}
                   className="px-4 py-2 rounded-xl text-sm font-semibold uppercase tracking-[0.18em] hover:bg-brand-mac_minimize/30 dark:hover:bg-brand-mac_minimize/20 transition-colors duration-100 ease-in-out"
                 >
@@ -233,7 +264,7 @@ const DateRangePicker = ({
                   : "text-brand-dark_txt_accent/60 italic dark:text-brand-light_txt/40 w-full text-center mb-4 italic"
               }
             >
-              {formatDateRangeLabel(value, placeholder)}
+              {displayLabel}
             </div>
 
             {pickerMode === "calendar" ? (
@@ -259,11 +290,13 @@ const DateRangePicker = ({
 
                     const isStart = isSameDay(day, parsedRange.startDate);
                     const isEnd = isSameDay(day, parsedRange.endDate);
-                    const isInRange = isDateBetween(
-                      day,
-                      parsedRange.startDate,
-                      parsedRange.endDate,
-                    );
+                    const isInRange =
+                      mode === "range" &&
+                      isDateBetween(
+                        day,
+                        parsedRange.startDate,
+                        parsedRange.endDate,
+                      );
                     const isBound = isStart || isEnd;
 
                     return (
