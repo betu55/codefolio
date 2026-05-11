@@ -3,7 +3,6 @@ import { FaChevronLeft, FaChevronRight, FaRegCalendarAlt } from "react-icons/fa"
 import {
   formatDateKey,
   formatDateRangeLabel,
-  firstDateLabel,
   parseDateRange,
   parseDateKey,
   serializeDateRange,
