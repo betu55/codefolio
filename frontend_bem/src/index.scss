@@ -71,11 +71,11 @@ body {
 }
 
 .edit-btn{
-  @apply inline-flex h-7 w-7 items-center justify-center rounded-md border border-brand-border_dark bg-brand-light_bg text-brand-dark_txt transition hover:scale-110 dark:border-brand-border_light dark:bg-brand-dark_bg dark:text-brand-light_txt;
+  @apply inline-flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-md border border-brand-border_dark bg-brand-light_bg text-brand-dark_txt transition hover:scale-110 dark:border-brand-border_light dark:bg-brand-dark_bg dark:text-brand-light_txt;
 }
 
 .delete-btn{
-  @apply inline-flex h-7 w-7 items-center justify-center rounded-md border border-brand-delete_bg bg-brand-light_txt text-brand-delete_red transition hover:scale-110 hover:bg-brand-delete_bg dark:border-brand-delete_bg_dark dark:bg-brand-mac_bar_dark hover:dark:bg-brand-delete_bg_dark_hover hover:dark:bg-brand-delete_bg_dark_hover hover:dark:text-brand-dark_txt;
+  @apply inline-flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-md border border-brand-delete_bg bg-brand-light_txt text-brand-delete_red transition hover:scale-110 hover:bg-brand-delete_bg dark:border-brand-delete_bg_dark dark:bg-brand-mac_bar_dark hover:dark:bg-brand-delete_bg_dark_hover hover:dark:bg-brand-delete_bg_dark_hover hover:dark:text-brand-dark_txt;
 
 }
 

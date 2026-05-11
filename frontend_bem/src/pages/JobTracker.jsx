@@ -176,7 +176,7 @@ const JobTracker = () => {
           </p>
         </section>
         <div className="w-full max-w-full overflow-x-auto rounded-xl border border-brand-border_dark dark:border-brand-border_light">
-          <table className="w-full min-w-[900px] border-collapse text-left">
+          <table className="w-full min-w-[950px] border-collapse text-left">
             <thead className="bg-brand-mac_maximize dark:bg-brand-mac_minimize/50 rounded-xl">
               <tr>
                 <th className="px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
@@ -234,7 +234,7 @@ const JobTracker = () => {
                         : "bg-brand-mac_maximize/40 dark:bg-brand-mac_minimize/10"
                     }
                   >
-                    <td className="px-4 py-4 align-top">
+                    <td className="px-4 py-4 align-center">
                       {isAdmin && (
                         <div className="flex flex-row gap-2">
                           <button
@@ -263,10 +263,10 @@ const JobTracker = () => {
                       <span
                         className={
                           job.status === "Accepted"
-                            ? "rounded-xl border border-brand-accepted/50 px-3 py-1 text-sm text-brand-accepted/90"
+                            ? "rounded-xl border border-brand-accepted dark:border-brand-accepted/50 px-3 py-1 text-sm text-brand-accepted dark:text-brand-accepted/90"
                             : job.status === "Rejected"
-                              ? "rounded-xl border border-brand-rejected/50 px-3 py-1 text-sm text-brand-rejected/90"
-                              : "rounded-xl border border-brand-pending/50 px-3 py-1 text-sm text-brand-pending/90"
+                              ? "rounded-xl border border-brand-rejected dark:border-brand-rejected/50 px-3 py-1 text-sm text-brand-rejected dark:text-brand-rejected/90"
+                              : "rounded-xl border border-brand-pending dark:border-brand-pending/50 px-3 py-1 text-sm text-brand-pending dark:text-brand-pending/90"
                         }
                       >
                         {job.status}
@@ -324,7 +324,7 @@ const JobTracker = () => {
               <Button
                 type="button"
                 onClick={closeJobModal}
-                className="delete-btn absolute right-6 top-6 z-30 flex h-10 w-10 items-center justify-center"
+                className="delete-btn absolute right-6 top-6 z-30 flex items-center justify-center"
               >
                 ×
               </Button>

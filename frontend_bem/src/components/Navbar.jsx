@@ -14,7 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navbarLinks = isAdmin ? 
-  ["Home", "About Me", "Projects", "Experience", "Contact", "Job-Tracker"]:
+  ["Home", "About Me", "Projects", "Experience", "Contact", "Tracker"]:
   ["Home", "About Me", "Projects", "Experience", "Contact"];
 
   const handleLogout = (isAdmin) => {
@@ -47,15 +47,15 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="relative w-full max-w-full overflow-x-clip bg-gray-800 md:bg-transparent nav-color">
-      <div className="flex w-full max-w-full items-center justify-between px-4 py-3 md:bg-transparent md:dark:bg-transparent dark:text-brand-dark_txt bg-brand-dark_bg dark:bg-brand-light_bg">
+    <nav className="relative w-full max-w-full overflow-x-clip bg-gray-800 lg:bg-transparent nav-color">
+      <div className="flex w-full max-w-full items-center justify-between px-4 py-3 lg:bg-transparent lg:dark:bg-transparent dark:text-brand-dark_txt bg-brand-dark_bg dark:bg-brand-light_bg">
         {/* Logo */}
-        <div className="text-3xl font-bold hover:text-gray-300 md:text-brand-dark_txt md:dark:text-brand-light_txt">
+        <div className="text-3xl font-bold hover:text-gray-300 text-brand-light_txt dark:text-brand-dark_txt lg:text-brand-dark_txt lg:dark:text-brand-light_txt">
           <Link to="/">Bemenet's Portfolio</Link>
         </div>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden lg:flex space-x-6">
           {navbarLinks.map(
             (item, index) => (
               <li
@@ -91,10 +91,10 @@ const Navbar = () => {
         </ul>
 
         {/* Hamburger Menu for Mobile */}
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <button className="focus:outline-none" onClick={toggleMenu}>
             <span
-              className={`material-icons text-3xl dark:text-brand-dark_txt transition-all duration-300 ease-in-out transform ${
+              className={`material-icons text-3xl text-brand-light_txt dark:text-brand-dark_txt transition-all duration-300 ease-in-out transform ${
                 isOpen ? "rotate-90 scale-110" : "rotate-0 scale-100"
               }`}
             >
