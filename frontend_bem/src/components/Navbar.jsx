@@ -14,8 +14,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navbarLinks = isAdmin ? 
-  ["Home", "About Me", "Projects", "Experience", "Contact", "Tracker"]:
-  ["Home", "About Me", "Projects", "Experience", "Contact"];
+  ["Home", "Projects", "Experience", "Contact", "Tracker"]:
+  ["Home", "Projects", "Experience", "Contact"];
 
   const handleLogout = (isAdmin) => {
     setIsModalOpen(false);
