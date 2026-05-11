@@ -4,6 +4,7 @@ import com.betu.codefolio.repository.JobTrackerRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public class JobTrackerService {
   
   private final JobTrackerRepository jobTrackerRepository;
@@ -28,17 +29,18 @@ public class JobTrackerService {
     JobTracker existingJobTracker = jobTrackerRepository.findById(id).orElseThrow(() -> new RuntimeException("Job Tracker not found"));
     existingJobTracker.setRole(updatedJobTracker.getRole());
     existingJobTracker.setCompany(updatedJobTracker.getCompany());
-    existingJobTracker.setLocation(updatedJobTracker.getLocation());
     existingJobTracker.setEmploymentType(updatedJobTracker.getEmploymentType());
-    existingJobTracker.setJobLevel(updatedJobTracker.getJobLevel());
     existingJobTracker.setStatus(updatedJobTracker.getStatus());
     existingJobTracker.setDateApplied(updatedJobTracker.getDateApplied());
     existingJobTracker.setApplicationDeadline(updatedJobTracker.getApplicationDeadline());
     existingJobTracker.setJobUrl(updatedJobTracker.getJobUrl());
-    existingJobTracker.setCompanyUrl(updatedJobTracker.getCompanyUrl());
     existingJobTracker.setUpdates(updatedJobTracker.getUpdates());
     return jobTrackerRepository.save(existingJobTracker);
 
+  }
+
+  public void deleteJobTracker(Long id) {
+    jobTrackerRepository.deleteById(id);
   }
 
 }

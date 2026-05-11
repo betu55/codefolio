@@ -60,7 +60,10 @@ const Dropdown = ({ options, onSelect, placeholder }) => {
               filteredOptions.map((option, index) => (
                 <li
                   key={index}
-                  onClick={() => handleSelect(option)}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    handleSelect(option);
+                  }}
                   className="px-4 py-2 hover:bg-brand-mac_maximize dark:hover:bg-brand-mac_minimize dark:hover:text-brand-dark_txt cursor-pointer"
                 >
                   {option}

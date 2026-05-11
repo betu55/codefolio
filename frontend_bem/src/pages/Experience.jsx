@@ -171,8 +171,8 @@ const Experience = () => {
   return (
     <div className="main-container main-container-start gap-6 px-4 md:px-8 py-6">
       <section className="w-full max-w-6xl text-left">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">Experience</h1>
-        <p className="text-lg md:text-xl leading-none max-w-3xl">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Experience</h1>
+        <p className="text-lg md:text-xl leading-none max-w-4xl">
           A summary of my professional experience that has shaped my journey as
           a software developer.
         </p>
@@ -216,183 +216,184 @@ const Experience = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <form
-            onSubmit={handleSubmitExperience}
-            className="relative w-full max-w-2xl h-5/6 overflow-y-auto rounded-2xl border border-brand-border_dark dark:border-brand-border_light bg-brand-light_bg dark:bg-brand-dark_bg p-6 text-left shadow-xl"
-          >
-            <h2 className="text-2xl font-bold mb-5">
-              {editingExperience ? "Edit Experience" : "Add Experience"}
-            </h2>
+          <div className="relative w-full max-w-2xl h-5/6">
+            <Button
+              onClick={closeExperienceModal}
+              className="delete-btn absolute right-6 top-6 z-30 flex h-10 w-10 items-center justify-center"
+            >
+              ×
+            </Button>
+            <form
+              onSubmit={handleSubmitExperience}
+              className="relative w-full max-w-2xl h-5/6 overflow-y-auto rounded-2xl border border-brand-border_dark dark:border-brand-border_light bg-brand-light_bg dark:bg-brand-dark_bg p-6 text-left shadow-xl"
+            >
+              <h2 className="text-2xl font-bold mb-5">
+                {editingExperience ? "Edit Experience" : "Add Experience"}
+              </h2>
 
-            <div className="grid gap-4">
-              <Button
-                onClick={closeExperienceModal}
-                className="delete-btn absolute right-5 top-5 px-4 py-4"
-              >
-                ×
-              </Button>
-
-              <label className="flex flex-col gap-2">
-                Role
-                <input
-                  name="role"
-                  value={experienceForm.role}
-                  onChange={handleInputChange}
-                  className="input-field"
-                  required
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Company
-                <input
-                  name="company"
-                  value={experienceForm.company}
-                  onChange={handleInputChange}
-                  className="input-field"
-                  required
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Location
-                <input
-                  name="location"
-                  value={experienceForm.location}
-                  onChange={handleInputChange}
-                  className="input-field"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Employment Type
-                <Dropdown
-                  options={[
-                    "Full-time",
-                    "Full-time (contract)",
-                    "Part-time",
-                    "Part-time (contract)",
-                    "Internship",
-                    "Apprenticeship",
-                    "Volunteer",
-                  ]}
-                  onSelect={(value) =>
-                    setExperienceForm((currentForm) => ({
-                      ...currentForm,
-                      employmentType: value,
-                    }))
-                  }
-                />
-              </label>
-
-              <label className="flex items-center w-fit gap-2 hover:cursor-pointer">
-                <span className="relative inline-flex items-center justify-center">
+              <div className="grid gap-4">
+                <label className="flex flex-col gap-2">
+                  Role
                   <input
-                    type="checkbox"
-                    name="isCurrent"
-                    checked={experienceForm.isCurrent}
-                    className="w-7 h-7 p-2accent-brand-mac_minimize appearance-none border rounded-lg border-brand-border_dark dark:border-brand-border_light checked:bg-brand-mac_minimize checked:border-brand-mac_minimize focus:outline-none focus:ring-2 focus:ring-brand-mac_minimize/50 hover:cursor-pointer transition-colors duration-100 peer"
-                    onChange={(e) =>
+                    name="role"
+                    value={experienceForm.role}
+                    onChange={handleInputChange}
+                    className="input-field"
+                    required
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Company
+                  <input
+                    name="company"
+                    value={experienceForm.company}
+                    onChange={handleInputChange}
+                    className="input-field"
+                    required
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Location
+                  <input
+                    name="location"
+                    value={experienceForm.location}
+                    onChange={handleInputChange}
+                    className="input-field"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Employment Type
+                  <Dropdown
+                    options={[
+                      "Full-time",
+                      "Full-time (contract)",
+                      "Part-time",
+                      "Part-time (contract)",
+                      "Internship",
+                      "Apprenticeship",
+                      "Volunteer",
+                    ]}
+                    onSelect={(value) =>
                       setExperienceForm((currentForm) => ({
                         ...currentForm,
-                        isCurrent: e.target.checked,
-                        endDate: e.target.checked ? "" : currentForm.endDate,
+                        employmentType: value,
                       }))
                     }
                   />
-                  <span className="pointer-events-none w-7 h-7 mx-auto my-auto absolute inset-0 hidden items-center justify-center text-brand-dark_txt peer-checked:flex font-bold">
-                    ✓
+                </label>
+
+                <label className="flex items-center w-fit gap-2 hover:cursor-pointer">
+                  <span className="relative inline-flex items-center justify-center">
+                    <input
+                      type="checkbox"
+                      name="isCurrent"
+                      checked={experienceForm.isCurrent}
+                      className="w-7 h-7 p-2accent-brand-mac_minimize appearance-none border rounded-lg border-brand-border_dark dark:border-brand-border_light checked:bg-brand-mac_minimize checked:border-brand-mac_minimize focus:outline-none focus:ring-2 focus:ring-brand-mac_minimize/50 hover:cursor-pointer transition-colors duration-100 peer"
+                      onChange={(e) =>
+                        setExperienceForm((currentForm) => ({
+                          ...currentForm,
+                          isCurrent: e.target.checked,
+                          endDate: e.target.checked ? "" : currentForm.endDate,
+                        }))
+                      }
+                    />
+                    <span className="pointer-events-none w-7 h-7 mx-auto my-auto absolute inset-0 hidden items-center justify-center text-brand-dark_txt peer-checked:flex font-bold">
+                      ✓
+                    </span>
                   </span>
-                </span>
-                <span className="text-base">I currently work here</span>
-              </label>
+                  <span className="text-base">I currently work here</span>
+                </label>
 
-              <div className="flex flex-col gap-2">
-                <DateRangePicker
-                  label="Date range"
-                  value={`${experienceForm.startDate || null}|${experienceForm.endDate || null}`}
-                  onChange={(nextValue) => {
-                    const { startDate, endDate } = parseDateRange(nextValue);
+                <div className="flex flex-col gap-2">
+                  <DateRangePicker
+                    label="Date range"
+                    value={`${experienceForm.startDate || null}|${experienceForm.endDate || null}`}
+                    onChange={(nextValue) => {
+                      const { startDate, endDate } = parseDateRange(nextValue);
 
-                    setExperienceForm((currentForm) => ({
-                      ...currentForm,
-                      startDate: startDate ? formatDateKey(startDate) : "",
-                      endDate: endDate ? formatDateKey(endDate) : "",
-                    }));
-                  }}
-                  placeholder="Select employment timeline"
-                />
+                      setExperienceForm((currentForm) => ({
+                        ...currentForm,
+                        startDate: startDate ? formatDateKey(startDate) : "",
+                        endDate: endDate ? formatDateKey(endDate) : "",
+                      }));
+                    }}
+                    placeholder="Select employment timeline"
+                  />
+                </div>
+
+                <label className="flex flex-col gap-2">
+                  Description
+                  <textarea
+                    name="description"
+                    value={experienceForm.description}
+                    onChange={handleInputChange}
+                    rows="4"
+                    className="input-field min-h-32 resize-y"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Highlights ('/' separated)
+                  <textarea
+                    name="highlights"
+                    value={experienceForm.highlights}
+                    onChange={handleInputChange}
+                    rows="4"
+                    placeholder="Led a team of 5 developers/ Improved performance by 30%..."
+                    className="input-field min-h-32 resize-y"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Tech Stack ('/' separated)
+                  <input
+                    name="stack"
+                    value={experienceForm.stack}
+                    onChange={handleInputChange}
+                    placeholder="React/ Spring Boot/ MySQL"
+                    className="input-field"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Company URL
+                  <input
+                    name="companyUrl"
+                    value={experienceForm.companyUrl}
+                    onChange={handleInputChange}
+                    placeholder="https://www.example.com"
+                    className="input-field"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-2">
+                  Logo URL
+                  <input
+                    name="logoUrl"
+                    value={experienceForm.logoUrl}
+                    onChange={handleInputChange}
+                    placeholder="https://www.example.com/logo.png"
+                    className="input-field"
+                  />
+                </label>
               </div>
 
-              <label className="flex flex-col gap-2">
-                Description
-                <textarea
-                  name="description"
-                  value={experienceForm.description}
-                  onChange={handleInputChange}
-                  rows="4"
-                  className="input-field min-h-32 resize-y"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Highlights ('/' separated)
-                <textarea
-                  name="highlights"
-                  value={experienceForm.highlights}
-                  onChange={handleInputChange}
-                  rows="4"
-                  placeholder="Led a team of 5 developers/ Improved performance by 30%..."
-                  className="input-field min-h-32 resize-y"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Tech Stack ('/' separated)
-                <input
-                  name="stack"
-                  value={experienceForm.stack}
-                  onChange={handleInputChange}
-                  placeholder="React/ Spring Boot/ MySQL"
-                  className="input-field"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Company URL
-                <input
-                  name="companyUrl"
-                  value={experienceForm.companyUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://www.example.com"
-                  className="input-field"
-                />
-              </label>
-
-              <label className="flex flex-col gap-2">
-                Logo URL
-                <input
-                  name="logoUrl"
-                  value={experienceForm.logoUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://www.example.com/logo.png"
-                  className="input-field"
-                />
-              </label>
-            </div>
-
-            <div className="mt-6 flex justify-end gap-3">
-              <Button
-                onClick={closeExperienceModal}
-                className="out-button px-5 py-2"
-              >
-                Cancel
-              </Button>
-              <Button type="submit" className="out-button px-5 py-2">
-                {editingExperience ? "Save Changes" : "Add Experience"}
-              </Button>
-            </div>
-          </form>
+              <div className="mt-6 flex justify-end gap-3">
+                <Button
+                  onClick={closeExperienceModal}
+                  className="out-button px-5 py-2"
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" className="out-button px-5 py-2">
+                  {editingExperience ? "Save Changes" : "Add Experience"}
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>

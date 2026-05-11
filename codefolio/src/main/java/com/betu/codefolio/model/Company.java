@@ -16,7 +16,6 @@ public class Company {
 
   private String name;
   private String location;
-  private String industry;
   private String companyUrl;
   private String logoUrl;
 

@@ -44,6 +44,16 @@ export const parseDateRange = (value) => {
   };
 };
 
+export const formatDateLabel = (value, fallback = "Select date") => {
+  const date = parseDateKey(value);
+
+  if (!date) {
+    return fallback;
+  }
+
+  return rangeFormatter.format(date);
+};
+
 export const formatDateRangeLabel = (value, fallback = "Select date range") => {
   const { startDate, endDate } = parseDateRange(value);
 

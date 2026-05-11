@@ -17,16 +17,14 @@ public class JobTracker {
   private Long id;
 
   private String role;
-  @ManyToOne
+  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+  @JoinColumn(name = "company_id")
   private Company company; // Can be null for freelance or self-employed roles
-  private String location;
   private String employmentType;
-  private String jobLevel;
   private String status;
   private String dateApplied;
   private String applicationDeadline;
   private String jobUrl;
-  private String companyUrl;
   @ElementCollection
   @CollectionTable(name = "job_tracker_updates", joinColumns = @JoinColumn(name = "job_tracker_id"))
   @Column(name = "updates")

@@ -13,6 +13,10 @@ const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const navbarLinks = isAdmin ? 
+  ["Home", "About Me", "Projects", "Experience", "Contact", "Job-Tracker"]:
+  ["Home", "About Me", "Projects", "Experience", "Contact"];
+
   const handleLogout = (isAdmin) => {
     setIsModalOpen(false);
 
@@ -43,8 +47,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800 md:bg-transparent nav-color">
-      <div className="px-4 py-3 flex justify-between items-center md:dark:bg-transparent md:bg-transparent dark:text-brand-dark_txt bg-brand-dark_bg dark:bg-brand-light_bg">
+    <nav className="relative w-full max-w-full overflow-x-clip bg-gray-800 md:bg-transparent nav-color">
+      <div className="flex w-full max-w-full items-center justify-between px-4 py-3 md:bg-transparent md:dark:bg-transparent dark:text-brand-dark_txt bg-brand-dark_bg dark:bg-brand-light_bg">
         {/* Logo */}
         <div className="text-3xl font-bold hover:text-gray-300 md:text-brand-dark_txt md:dark:text-brand-light_txt">
           <Link to="/">Bemenet's Portfolio</Link>
@@ -52,7 +56,7 @@ const Navbar = () => {
 
         {/* Desktop Links */}
         <ul className="hidden md:flex space-x-6">
-          {["About Me", "Experience", "Projects", "Contact"].map(
+          {navbarLinks.map(
             (item, index) => (
               <li
                 key={index}
@@ -110,7 +114,7 @@ const Navbar = () => {
         <ul
           className={`flex flex-col items-center  space-y-4 py-4 rounded-b-xl bg-brand-dark_bg dark:bg-brand-light_bg`}
         >
-          {["Home", "About Me", "Projects", "Experience", "Contact"].map(
+          {navbarLinks.map(
             (item, index) => (
               <li
                 key={index}
@@ -132,7 +136,7 @@ const Navbar = () => {
           )}
           <li>
             <Button
-              className="out-button-inverted px-4 py-1"
+              className="out-button-inverted px-4 mt-4 py-1"
               onClick={openAccountModal}
             >
               {isAdmin ? (

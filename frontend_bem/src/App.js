@@ -10,15 +10,17 @@ import Experience from "./pages/Experience.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
+import JobTracker from "./pages/JobTracker.jsx";
 
 const App = () => {
   return (
     <Router>
-      <div className="mx-auto min-h-screen w-full grid grid-rows-[auto_1fr_auto]">
+      <div className="mx-auto grid min-h-screen w-full max-w-full grid-rows-[auto_1fr_auto] overflow-x-hidden">
         <Navbar />
-        <main className="main-container">
+        <main className="main-container min-w-0 overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
             <Route path="/about-me" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/experience" element={<Experience />} />
@@ -26,6 +28,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/job-tracker" element={<JobTracker />} />
           </Routes>
         </main>
         <Footer />
