@@ -11,7 +11,9 @@ const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(isAdminLoggedIn());
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useAutoLogout(isAdmin);
+  if (isAdmin) {
+    useAutoLogout(isAdmin);
+  }
 
   const location = useLocation();
   const navigate = useNavigate();
