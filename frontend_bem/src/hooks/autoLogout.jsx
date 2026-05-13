@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const TEN_MINUTES = 10 * 60 * 1000;
 
-const autoLogout = (isAdmin) => {
+const AutoLogout = (isAdmin) => {
   const navigate = useNavigate();
   const timeoutRef = useRef(null);
 
@@ -48,4 +48,4 @@ const autoLogout = (isAdmin) => {
   }, [isAdmin, navigate]);
 };
 
-export default autoLogout;
+export default AutoLogout;
