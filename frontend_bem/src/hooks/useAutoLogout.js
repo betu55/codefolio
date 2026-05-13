@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 const TEN_MINUTES = 10 * 60 * 1000;
 
-const AutoLogout = (isAdmin) => {
+const useAutoLogout = (isAdmin) => {
   const navigate = useNavigate();
+
   const timeoutRef = useRef(null);
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const AutoLogout = (isAdmin) => {
 
     const resetTimer = () => {
       clearTimeout(timeoutRef.current);
+
       timeoutRef.current = setTimeout(logout, TEN_MINUTES);
     };
 
@@ -40,7 +42,6 @@ const AutoLogout = (isAdmin) => {
 
     return () => {
       clearTimeout(timeoutRef.current);
-
       activityEvents.forEach((event) => {
         window.removeEventListener(event, resetTimer);
       });
@@ -48,4 +49,4 @@ const AutoLogout = (isAdmin) => {
   }, [isAdmin, navigate]);
 };
 
-export default AutoLogout;
+export default useAutoLogout;
