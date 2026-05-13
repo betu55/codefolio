@@ -4,7 +4,7 @@ import ThemeToggle from "./ThemeToggle";
 import Button from "./Button";
 import { isAdminLoggedIn } from "../utils/auth.js";
 import { FaUserCircle} from "react-icons/fa";
-import AutoLogout from "../utils/AutoLogout.jsx";
+import AutoLogout from "../hooks/AutoLogout.jsx";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
