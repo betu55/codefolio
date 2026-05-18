@@ -16,6 +16,7 @@ public class ProjectDto {
     private String githubUrl;
     private String liveUrl;
     private String dateWorkedOn;
+    private Integer orderIndex;
     private List<String> stack;
 
     // Convert Project entity to ProjectDto
@@ -29,6 +30,7 @@ public class ProjectDto {
                 .status(project.getStatus())
                 .stack(project.getStack())
                 .dateWorkedOn(project.getDateWorkedOn())
+                .orderIndex(project.getOrderIndex())
                 .build();
     }
 
@@ -43,6 +45,7 @@ public class ProjectDto {
                 .status(projectDto.getStatus())
                 .stack(projectDto.getStack())
                 .dateWorkedOn(projectDto.getDateWorkedOn())
+                .orderIndex(projectDto.getOrderIndex())
                 .build(); 
     }
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { FaPlus} from "react-icons/fa";
 import ProjectItem from "../components/ProjectItem.jsx";
 import Button from "../components/Button.jsx";
+import Dropdown from "../components/Dropdown.jsx";
 import DateRangePicker from "../components/DateRangePicker.jsx";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 import { API_BASE_URL } from "../utils/api.js";
@@ -15,6 +16,7 @@ const emptyProjectForm = {
   liveUrl: "",
   stack: "",
   dateWorkedOn: "",
+  orderIndex: 10,
 };
 
 const Projects = () => {
@@ -66,6 +68,7 @@ const Projects = () => {
       liveUrl: project.liveUrl || "",
       stack: project.stack?.join("/ ") || "",
       dateWorkedOn: project.dateWorkedOn || "",
+      orderIndex: project.orderIndex || 10,
     });
     setIsModalOpen(true);
   };
@@ -86,6 +89,7 @@ const Projects = () => {
 
     const projectPayload = {
       ...projectForm,
+      orderIndex: Number(projectForm.orderIndex),
       stack: projectForm.stack
         .split("/")
         .map((tech) => tech.trim())
@@ -205,17 +209,31 @@ const Projects = () => {
               </h2>
 
               <div className="grid gap-4">
-
-                <label className="flex flex-col gap-2">
-                  Project name
-                  <input
-                    name="name"
-                    value={projectForm.name}
-                    onChange={handleInputChange}
-                    className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
-                    required
-                  />
-                </label>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <label className="flex w-5/6 flex-col gap-2">
+                    Project name
+                    <input
+                      name="name"
+                      value={projectForm.name}
+                      onChange={handleInputChange}
+                      className="rounded-xl border border-brand-border_dark dark:border-brand-border_light bg-transparent px-4 py-2"
+                      required
+                    />
+                  </label>
+                  <label className="flex flex-col gap-2">
+                    Order index
+                    <Dropdown
+                      options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(String)}
+                      value={projectForm.orderIndex}
+                      onSelect={(value) =>
+                        setProjectForm((currentForm) => ({
+                          ...currentForm,
+                          orderIndex: parseInt(value, 10),
+                        }))
+                      }
+                    />
+                  </label>
+                </div>
 
                 <label className="flex flex-col gap-2">
                   Status

@@ -353,6 +353,7 @@ const JobTracker = () => {
                       Application Status
                       <Dropdown
                         options={["Applied", "Accepted", "Rejected"]}
+                        value={jobForm.status}
                         onSelect={(value) =>
                           setJobForm((currentForm) => ({
                             ...currentForm,
@@ -419,6 +420,7 @@ const JobTracker = () => {
                   <label className="flex flex-col gap-2">
                     Employment Type
                     <Dropdown
+                      value={jobForm.employmentType}
                       options={[
                         "Full-time",
                         "Full-time (contract)",

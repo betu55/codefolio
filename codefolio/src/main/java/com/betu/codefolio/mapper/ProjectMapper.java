@@ -15,6 +15,7 @@ public class ProjectMapper {
                 .status(projectDto.getStatus())
                 .stack(projectDto.getStack())
                 .dateWorkedOn(projectDto.getDateWorkedOn())
+                .orderIndex(projectDto.getOrderIndex())
                 .build();
     }
 
@@ -29,6 +30,7 @@ public class ProjectMapper {
                 .status(project.getStatus())
                 .stack(project.getStack())
                 .dateWorkedOn(project.getDateWorkedOn())
+                .orderIndex(project.getOrderIndex())
                 .build(); 
       }
 
@@ -41,6 +43,7 @@ public class ProjectMapper {
         existingProject.setStatus(projectDto.getStatus());
         existingProject.setStack(projectDto.getStack());
         existingProject.setDateWorkedOn(projectDto.getDateWorkedOn());
+        existingProject.setOrderIndex(projectDto.getOrderIndex());
         return existingProject; 
     }
 }

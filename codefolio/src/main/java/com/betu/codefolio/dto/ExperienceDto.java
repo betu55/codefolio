@@ -23,6 +23,7 @@ public class ExperienceDto {
     private List<String> stack;
     private String companyUrl;
     private String logoUrl;
+    private Integer orderIndex;
 
 
     // Convert Experience entity to ExperienceDto
@@ -41,6 +42,7 @@ public class ExperienceDto {
                 .stack(experience.getStack())
                 .companyUrl(experience.getCompanyUrl())
                 .logoUrl(experience.getLogoUrl())
+                .orderIndex(experience.getOrderIndex())
                 .build();
     }
 
@@ -60,6 +62,7 @@ public class ExperienceDto {
                 .stack(experienceDto.getStack())
                 .companyUrl(experienceDto.getCompanyUrl())
                 .logoUrl(experienceDto.getLogoUrl())
+                .orderIndex(experienceDto.getOrderIndex())
                 .build();
     }
 }
