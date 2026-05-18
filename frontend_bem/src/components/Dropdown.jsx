@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Dropdown = ({ options, onSelect, placeholder }) => {
+const Dropdown = ({ options, onSelect, placeholder, value = "" }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showOptions, setShowOptions] = useState(false);
 
   const filteredOptions = options;
+
+  useEffect(() => {
+    setSearchTerm(value ? String(value) : "");
+  }, [value]);
 
   const handleSelect = (option) => {
     onSelect(option);

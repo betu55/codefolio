@@ -24,6 +24,9 @@ public class Project {
     private String githubUrl;
     private String liveUrl;
     private String dateWorkedOn;
+    @Builder.Default
+    @Column(name = "order_index")
+    private Integer orderIndex = 10;
 
     @ElementCollection
     @CollectionTable(name = "project_stack", joinColumns = @JoinColumn(name = "project_id"))

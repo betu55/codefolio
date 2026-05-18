@@ -23,6 +23,9 @@ public class Experience {
   private String startDate;
   private String endDate;
   private Boolean isCurrent;
+  @Builder.Default
+  @Column(name = "order_index")
+  private Integer orderIndex = 10;
 
   @Column(length = 2000)
   private String description;

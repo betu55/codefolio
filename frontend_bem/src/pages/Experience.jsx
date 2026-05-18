@@ -16,6 +16,7 @@ const emptyExperienceForm = {
   startDate: "",
   endDate: "",
   isCurrent: false,
+  orderIndex: 10,
   description: "",
   highlights: "",
   stack: "",
@@ -73,6 +74,7 @@ const Experience = () => {
       startDate: experience.startDate || "",
       endDate: experience.endDate || "",
       isCurrent: experience.isCurrent || false,
+      orderIndex: experience.orderIndex || 10,
       description: experience.description || "",
       highlights: experience.highlights?.join("/ ") || "",
       stack: experience.stack?.join("/ ") || "",
@@ -99,6 +101,7 @@ const Experience = () => {
 
     const experiencePayload = {
       ...experienceForm,
+      orderIndex: Number(experienceForm.orderIndex),
       startDate: experienceForm.startDate
         ? formatDateKey(parseDateKey(experienceForm.startDate))
         : "",
@@ -232,16 +235,31 @@ const Experience = () => {
               </h2>
 
               <div className="grid gap-4">
-                <label className="flex flex-col gap-2">
-                  Role
-                  <input
-                    name="role"
-                    value={experienceForm.role}
-                    onChange={handleInputChange}
-                    className="input-field"
-                    required
-                  />
-                </label>
+                <div className="flex flex-col md:flex-row gap-4">
+                  <label className="flex w-5/6 flex-col gap-2">
+                    Role
+                    <input
+                      name="role"
+                      value={experienceForm.role}
+                      onChange={handleInputChange}
+                      className="input-field"
+                      required
+                    />
+                  </label>
+                  <label className="flex flex-col gap-2">
+                    Order index
+                    <Dropdown
+                      options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(String)}
+                      value={experienceForm.orderIndex}
+                      onSelect={(value) =>
+                        setExperienceForm((currentForm) => ({
+                          ...currentForm,
+                          orderIndex: parseInt(value, 10),
+                        }))
+                      }
+                    />
+                  </label>
+                </div>
 
                 <label className="flex flex-col gap-2">
                   Company
@@ -267,6 +285,7 @@ const Experience = () => {
                 <label className="flex flex-col gap-2">
                   Employment Type
                   <Dropdown
+                    value={experienceForm.employmentType}
                     options={[
                       "Full-time",
                       "Full-time (contract)",
