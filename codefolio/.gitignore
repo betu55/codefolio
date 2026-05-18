@@ -4,6 +4,12 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+# Spring Boot local config
+src/main/java/com/betu/codefolio/resources/
+
+# Security package
+src/main/java/com/betu/codefolio/security/
+
 ### STS ###
 .apt_generated
 .classpath
