@@ -235,7 +235,7 @@ const Experience = () => {
               </h2>
 
               <div className="grid gap-4">
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-row gap-4">
                   <label className="flex w-5/6 flex-col gap-2">
                     Role
                     <input
