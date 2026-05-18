@@ -62,8 +62,8 @@ const Register = () => {
         localStorage.removeItem("adminToken");
       }
 
-      setSuccessMessage("Registration successful. Redirecting to projects...");
-      navigate("/projects");
+      setSuccessMessage("Registration successful. Redirecting to home...");
+      navigate("/home");
     } catch (error) {
       setErrorMessage(error.message || "Registration failed");
     } finally {

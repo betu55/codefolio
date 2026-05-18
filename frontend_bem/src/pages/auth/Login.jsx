@@ -49,7 +49,7 @@ const Login = () => {
         localStorage.removeItem("adminToken");
       }
 
-      navigate("/experience");
+      navigate("/home");
     } catch (error) {
       setErrorMessage(error.message || "Login failed");
     } finally {
