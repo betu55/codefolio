@@ -18,13 +18,13 @@ public class ProjectService {
     }
 
     public List<Project> getAllProjects() {
-        return projectRepository.findAll().stream()
-                .sorted(
-                        Comparator
-                                .comparing(Project::getOrderIndex, Comparator.nullsLast(Integer::compareTo))
-                                .thenComparing(Project::getId, Comparator.nullsLast(Long::compareTo))
-                )
-                .toList();
+      return projectRepository.findAll().stream()
+        .sorted(
+          Comparator
+          .comparing(Project::getOrderIndex, Comparator.nullsLast(Integer::compareTo))
+          .thenComparing(Project::getId, Comparator.nullsLast(Long::compareTo))
+        )
+        .toList();
     }
 
     public Project getProjectById(Long id) {

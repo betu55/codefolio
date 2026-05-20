@@ -3,6 +3,7 @@ import com.betu.codefolio.model.JobTracker;
 import com.betu.codefolio.repository.JobTrackerRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Comparator;
 
 @Service
 public class JobTrackerService {
@@ -14,7 +15,12 @@ public class JobTrackerService {
   }
 
   public List<JobTracker> getAllJobTrackers() {
-    return jobTrackerRepository.findAll();
+    return jobTrackerRepository.findAll().stream()
+      .sorted(
+        Comparator
+          .comparing(JobTracker::getDateApplied, Comparator.nullsLast(String::compareTo))
+          .thenComparing(JobTracker::getId, Comparator.nullsLast(Long::compareTo))
+      ).toList();
   }
 
   public JobTracker getJobTrackerById(Long id) {
