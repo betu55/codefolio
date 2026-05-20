@@ -39,12 +39,11 @@ const Home = () => {
       </p>
       <div className="flex-container">
         <Button
-          text="Resume"
-          external={true}
-          link="https://docs.google.com/document/d/1f_LbcdsvSzF8I9h3I3cms9JxBQ9m_c3u8udh3k0WpS8/edit?usp=sharing"
+          text="Projects"
+          link="/projects"
           className="out-button w-60 inline"
         >
-          Resume
+          Projects
         </Button>
         <Button
           text="Experience"
