@@ -180,12 +180,15 @@ const JobTracker = () => {
             <thead className="bg-brand-mac_maximize dark:bg-brand-mac_minimize/50 rounded-xl">
               <tr>
                 <th className="px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
+                  #
+                </th>
+                <th className="px-2 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
                   Actions
                 </th>
                 <th className="px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
                   Status
                 </th>
-                <th className="px-4 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
+                <th className="px-3 py-3 text-sm font-semibold uppercase tracking-[0.16em]">
                   Role
                 </th>
 
@@ -234,7 +237,8 @@ const JobTracker = () => {
                         : "bg-brand-mac_maximize/40 dark:bg-brand-mac_minimize/10"
                     }
                   >
-                    <td className="px-4 py-4 align-center">
+                    <td className="px-4 py-4">{index + 1}</td>
+                    <td className="px-2 py-4 align-center">
                       {isAdmin && (
                         <div className="flex flex-row gap-2">
                           <button
@@ -272,7 +276,7 @@ const JobTracker = () => {
                         {job.status}
                       </span>
                     </td>
-                    <td className="px-4 py-4 font-medium">{job.role}</td>
+                    <td className="px-3 py-4 font-medium">{job.role}</td>
 
                     <td className="px-4 py-4">{job.company?.name}</td>
 
