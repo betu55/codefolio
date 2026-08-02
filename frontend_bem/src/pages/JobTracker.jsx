@@ -26,6 +26,7 @@ const JobTracker = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRoleDetailsModalOpen, setIsRoleDetailsModalOpen] = useState(false);
   const [editingJob, setEditingJob] = useState(null);
   const [jobForm, setJobForm] = useState(emptyJobForm);
 
@@ -78,9 +79,28 @@ const JobTracker = () => {
     setIsModalOpen(true);
   }
 
+  const openRoleDetailsModal = (job) => {
+    console.log("Opening role details modal for job:", job);
+    setJobForm({
+      role: job.role || "",
+      company: job.company || "",
+      employmentType: job.employmentType || "",
+      status: job.status || "",
+      dateApplied: job.dateApplied || "",
+      applicationDeadline: job.applicationDeadline || "",
+      jobUrl: job.jobUrl || "",
+      updates: job.updates?.join("/ ") || "",
+    });
+    setIsRoleDetailsModalOpen(true);
+  };
+
   const closeJobModal = () => {
     setIsModalOpen(false);
     setEditingJob(null);
+  };
+
+  const closeRoleDetailsModal = () => {
+    setIsRoleDetailsModalOpen(false);
   };
 
   const handleInputChange = (e) => {
@@ -276,7 +296,11 @@ const JobTracker = () => {
                         {job.status}
                       </span>
                     </td>
-                    <td className="px-3 py-4 font-medium">{job.role}</td>
+                    <td className="px-3 py-4 font-medium hover:text-brand-mac_minimize dark:hover:text-brand-mac_minimize">
+                      <button onClick={() => openRoleDetailsModal(job)}>
+                        {job.role}
+                      </button>
+                    </td>
 
                     <td className="px-4 py-4">{job.company?.name}</td>
 
@@ -321,7 +345,7 @@ const JobTracker = () => {
           </Button>
         )}
 
-        {/* Job Modal */}
+        {/* Edit/Add Job Modal */}
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
             <div className="relative w-full max-w-2xl h-5/6">
@@ -511,6 +535,104 @@ const JobTracker = () => {
                   </Button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+        {/* Role Details Modal */}
+        {isRoleDetailsModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+            <div className="relative w-full max-w-2xl h-5/6">
+              <Button
+                type="button"
+                onClick={closeRoleDetailsModal}
+                className="delete-btn absolute right-6 top-6 z-30 flex items-center justify-center"
+              >
+                ×
+              </Button>
+              <div className="relative w-full h-full overflow-y-auto rounded-2xl border border-brand-border_dark dark:border-brand-border_light bg-brand-light_bg dark:bg-brand-dark_bg p-6 text-left shadow-xl">
+                <h2 className="text-2xl font-bold mb-5">Role Details</h2>
+                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                  <img
+                    className="mb-4 h-36 w-auto object-contain"
+                    src={jobForm.company.logoUrl}
+                    alt="Company Logo"
+                  />
+                </div>
+                <div className="flex flex-col md:flex-row gap-2 mb-1 justify-center">
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href={jobForm.company.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <p className="font-semibold text-xl md:text-2xl hover:text-brand-mac_minimize dark:hover:text-brand-mac_minimize">
+                        {jobForm.company.name}
+                      </p>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm md:text-base text-center lg:text-lg text-brand-button_hover dark:text-brand-github italic">
+                    {jobForm.company.location}
+                  </p>
+                </div>
+                <div className="w-full p-2 mt-5">
+                  <span>
+                    <a
+                      href={jobForm.jobUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <h2 className="text-xl md:text-2xl font-semibold mb-2 inline hover:text-brand-mac_minimize dark:hover:text-brand-mac_minimize">
+                        {jobForm.role}
+                      </h2>
+                    </a>
+                    <p className="inline text-sm flex-none uppercase tracking-[0.25em] text-brand-mac_close dark:text-brand-mac_minimize">
+                      {" "}
+                      ({jobForm.employmentType})
+                    </p>
+                  </span>{" "}
+                  <span
+                    className={
+                      jobForm.status === "Accepted"
+                        ? "rounded-xl border border-brand-accepted dark:border-brand-accepted/50 px-3 py-1 text-sm text-brand-accepted dark:text-brand-accepted/90"
+                        : jobForm.status === "Rejected"
+                          ? "rounded-xl border border-brand-rejected dark:border-brand-rejected/50 px-3 py-1 text-sm text-brand-rejected dark:text-brand-rejected/90"
+                          : "rounded-xl border border-brand-pending dark:border-brand-pending/50 px-3 py-1 text-sm text-brand-pending dark:text-brand-pending/90"
+                    }
+                  >
+                    {jobForm.status}
+                  </span>
+                  <div className="flex flex-col gap-1 mt-3">
+                    <p className="text-sm md:text-base text-brand-button_hover dark:text-brand-dark_txt_accent italic">
+                      Applied: {jobForm.dateApplied || "Not applied"}
+                    </p>
+                    <p className="text-sm md:text-base text-brand-button_hover dark:text-brand-dark_txt_accent italic">
+                      Application Deadline:{" "}
+                      {jobForm.applicationDeadline || "N/A"}
+                    </p>
+                  </div>
+                  <div className="flex flex-col mt-3">
+                    <h2 className="text-lg font-semibold mt-2">Updates: </h2>
+                    <div className="flex flex-col gap-1 mt-2">
+                      {jobForm.updates ? (
+                        jobForm.updates.split("/").map((update, index) => (
+                          <p
+                            key={index}
+                            className="text-sm md:text-base text-brand-button_hover dark:text-brand-dark_txt_accent italic"
+                          >
+                            {"->"} {update.trim()}
+                          </p>
+                        ))
+                      ) : (
+                        <p className="text-sm md:text-base text-brand-button_hover dark:text-brand-dark_txt_accent italic">
+                          No updates available.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
