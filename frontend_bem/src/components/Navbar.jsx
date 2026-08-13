@@ -31,9 +31,7 @@ const Navbar = () => {
       setIsAdmin(false);
       navigate("/home");
     }
-    else {
-      navigate("/login");
-    }
+    navigate("/login");
   }
 
   useEffect(() => {
@@ -190,7 +188,7 @@ const Navbar = () => {
               </Button>
               <Button
                 className="out-button mx-2 mt-4 w-full"
-                onClick={() => setIsModalOpen(false)}
+                onClick={() => handleLogout(false)}
               >
                 Close
               </Button>
