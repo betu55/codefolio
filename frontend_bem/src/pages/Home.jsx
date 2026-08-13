@@ -3,7 +3,7 @@ import { API_BASE_URL } from "../utils/api.js";
 import Button from "../components/Button";
 import useAutoLogout from "../hooks/useAutoLogout";
 import { HiPencil } from "react-icons/hi2";
-import { FaCheck } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa6";
 import { GrClose } from "react-icons/gr";
 
 const Home = () => {
@@ -93,7 +93,7 @@ const Home = () => {
         <span className="animate-fade-in">{greeting}</span>, I'm Bemenet{" "}
         <span className="wave py-4">👋🏽</span>
       </h1>
-      <div className="w-full mt-4 flex flex-row justify-center items-center text-center px-4">
+      <div className="w-full mt-4 md:flex flex-row justify-center items-center text-center px-4">
         {isEditingIntro ? (
           <>
             <textarea
@@ -101,8 +101,8 @@ const Home = () => {
               onChange={(e) => setIntroText(e.target.value)}
               className="text-base md:text-lg w-full md:w-full h-32 p-2 border rounded-xl text-brand-dark_txt dark:text-brand-light_txt bg-brand-light_bg dark:bg-brand-dark_bg"
             />
-            <div className="flex justify-end items-end gap-2 mb-2">
-              <span className="text-brand-github dark:text-brand-dark_txt_accent dark:hover:text-brand-mac_close hover:text-brand-mac_close transition-colors duration-100 ml-2">
+            <div className="flex justify-center  md:justify-end items-end gap-2 mb-2">
+              <span className="text-brand-github dark:text-brand-dark_txt_accent dark:hover:text-brand-mac_close hover:text-brand-mac_close transition-colors duration-100 mt-1 md:mt-0 md:ml-2">
                 <button
                   type="button"
                   onClick={() => handleSubmit(introText)}
@@ -119,7 +119,7 @@ const Home = () => {
           </p>
         )}
         {isAdmin && (
-          <div className="flex justify-end items-end gap-2 mb-2">
+          <div className="flex justify-center items-start md:justify-end gap-2 mb-2">
             <span className="text-brand-github dark:text-brand-dark_txt_accent dark:hover:text-brand-mac_close hover:text-brand-mac_close transition-colors duration-100">
               {isEditingIntro ? (
                 <button type="button" onClick={() => handleCancel()}>
