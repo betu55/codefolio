@@ -38,7 +38,6 @@ const Home = () => {
 
   // when user saves updated bio, send the updated intro text to the backend API
   const handleSubmit = async (updatedIntro) => {
-    setIsEditingIntro(false);
     try {
       const response = await fetch(`${API_BASE_URL}/api/profile`, {
         method: "PUT",
@@ -48,6 +47,13 @@ const Home = () => {
         },
         body: JSON.stringify({ bio: updatedIntro }),
       });
+      
+      if (!response.ok) {
+        throw new Error("Failed to update intro text");
+      }
+
+      setIsEditingIntro(false); // Exit editing mode after successful update
+
     } catch (error) {
       console.error(error);
     }
@@ -97,13 +103,13 @@ const Home = () => {
             />
             <div className="flex justify-end items-end gap-2 mb-2">
               <span className="text-brand-github dark:text-brand-dark_txt_accent dark:hover:text-brand-mac_close hover:text-brand-mac_close transition-colors duration-100 ml-2">
-                <a
-                  href="#"
+                <button
+                  type="button"
                   onClick={() => handleSubmit(introText)}
                   className=""
                 >
                   <FaCheck className="inline mb-1" /> save
-                </a>
+                </button>
               </span>
             </div>
           </>
@@ -116,13 +122,13 @@ const Home = () => {
           <div className="flex justify-end items-end gap-2 mb-2">
             <span className="text-brand-github dark:text-brand-dark_txt_accent dark:hover:text-brand-mac_close hover:text-brand-mac_close transition-colors duration-100">
               {isEditingIntro ? (
-                <a href="#" onClick={() => handleCancel()}>
+                <button type="button" onClick={() => handleCancel()}>
                   <GrClose className="inline mb-1" /> cancel
-                </a>
+                </button>
               ) : (
-                <a href="#" onClick={() => setIsEditingIntro(true)}>
+                <button type="button" onClick={() => setIsEditingIntro(true)}>
                   <HiPencil className="inline mb-1" /> edit
-                </a>
+                </button>
               )}
             </span>
           </div>
