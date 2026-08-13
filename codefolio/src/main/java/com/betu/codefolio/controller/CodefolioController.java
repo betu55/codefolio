@@ -24,12 +24,14 @@ public class CodefolioController {
     private final ProjectService projectService;
     private final ExperienceService experienceService;
     private final JobTrackerService jobTrackerService;
+    private final ProfileService profileService;
 
-    public CodefolioController(SkillService skillService, ProjectService projectService, ExperienceService experienceService, JobTrackerService jobTrackerService) {
+    public CodefolioController(SkillService skillService, ProjectService projectService, ExperienceService experienceService, JobTrackerService jobTrackerService, ProfileService profileService) {
         this.skillService = skillService;
         this.projectService = projectService;
         this.experienceService = experienceService;
         this.jobTrackerService = jobTrackerService;
+        this.profileService = profileService;
     }
 
     @GetMapping("/api/skills")
@@ -40,7 +42,9 @@ public class CodefolioController {
     }
 
 
+    // -------------------------------
     // Project endpoints
+    // -------------------------------
     @GetMapping("/api/projects")
     public List<ProjectDto> getAllProjects() {
       
@@ -72,7 +76,9 @@ public class CodefolioController {
     }
 
 
+    // -------------------------------
     // Experience endpoints
+    // -------------------------------
     @GetMapping("/api/experiences")
     public List<ExperienceDto> getAllExperiences() {
       return experienceService.getAllExperiences().stream()
@@ -100,7 +106,9 @@ public class CodefolioController {
       System.out.println("\nDeleted experience with ID: " + id);
     }
 
+    // -------------------------------
     // JobTracker endpoints
+    // -------------------------------
     @GetMapping("/api/job-tracker")
     public List<JobTrackerDto> getAllJobTrackers() {
       return jobTrackerService.getAllJobTrackers().stream()
@@ -127,4 +135,20 @@ public class CodefolioController {
       jobTrackerService.deleteJobTracker(id);
       System.out.println("\nDeleted job tracker with ID: " + id);
     }
+
+    // -------------------------------
+    // Home bio endpoints
+    // -------------------------------
+    @GetMapping("/api/profile")
+    public ProfileDto getProfile() {
+      return new ProfileDto(profileService.getBio());
+    }
+
+    @PutMapping("/api/profile")
+    public ProfileDto updateProfile(@RequestBody ProfileDto profileDto) {
+      profileService.updateBio(profileDto.getBio());
+      System.out.println("\nUpdated profile bio.");
+      return profileDto;
+    }
+
 }                             
