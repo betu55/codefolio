@@ -80,7 +80,7 @@ body {
 }
 
 .card-item{
-  @apply border border-brand-border_dark dark:border-brand-border_light shadow-md rounded-xl h-full w-full min-h-48  align-middle flex flex-col md:flex-row shadow-md;
+  @apply border border-brand-border_dark dark:border-brand-border_light shadow-md rounded-xl h-full w-full min-h-48  align-middle flex flex-col md:flex-row shadow-md bg-brand-light_bg dark:bg-brand-dark_bg text-brand-dark_txt dark:text-brand-light_txt;
 }
 
 .main-container {
@@ -104,11 +104,11 @@ body {
 }
 
 .out-button {
-  @apply py-2 rounded-lg bg-transparent border border-brand-border_dark text-brand-dark_txt dark:text-brand-light_txt dark:border-brand-border_light hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center;
+  @apply py-2 rounded-lg bg-transparent border border-brand-border_dark text-brand-dark_txt dark:text-brand-light_txt dark:border-brand-border_light hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center bg-brand-light_bg dark:bg-brand-dark_bg transition-colors duration-150 ease-in-out;
 }
 
 .out-button-inverted{
-  @apply py-2 rounded-lg bg-transparent border border-brand-border_light text-brand-light_txt dark:text-brand-dark_txt dark:border-brand-border_dark hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center;
+  @apply py-2 rounded-lg bg-transparent border border-brand-border_light text-brand-light_txt dark:text-brand-dark_txt dark:border-brand-border_dark hover:bg-brand-border_light hover:text-brand-mac_minimize dark:hover:bg-brand-border_light dark:hover:text-brand-mac_minimize text-sm md:text-base justify-center items-center text-center bg-brand-light_bg dark:bg-brand-dark_bg transition-colors duration-150 ease-in-out;
 }
 
 .input-field {
@@ -194,4 +194,36 @@ body {
 
 .spinner-label {
   @apply text-sm uppercase tracking-[0.3em] text-brand-dark_txt_accent dark:text-brand-light_txt/70;
+}
+
+.dotted-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Dot pattern */
+  background-image: radial-gradient(circle,
+      rgba(191, 201, 214, 0.55) 1.2px,
+      transparent 1.2px);
+
+  background-size: 24px 24px;
+
+  /* Fade the dots radially */
+  mask-image: radial-gradient(circle at center,
+      black 0%,
+      black 55%,
+      transparent 85%);
+
+  -webkit-mask-image: radial-gradient(circle at center,
+      black 0%,
+      black 55%,
+      transparent 85%);
+}
+
+.dark .dotted-background {
+
+  background-image: radial-gradient(circle,
+      rgba(127, 117, 117, 0.35) 0.5px,
+      transparent 1.0px);
 }

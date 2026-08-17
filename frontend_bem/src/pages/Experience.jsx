@@ -219,7 +219,7 @@ const Experience = () => {
 
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
-          <div className="relative w-full max-w-2xl h-5/6">
+          <div className="relative w-full max-w-2xl h-5/6 mt-auto">
             <Button
               onClick={closeExperienceModal}
               className="delete-btn absolute right-6 top-6 z-30 flex h-10 w-10 items-center justify-center"
