@@ -11,12 +11,14 @@ import ThemeToggle from "./components/ThemeToggle.jsx";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import JobTracker from "./pages/JobTracker.jsx";
+import DottedBg from "./components/DottedBg.jsx";
 
 const App = () => {
   return (
     <Router>
       <div className="mx-auto grid min-h-screen w-full max-w-full grid-rows-[auto_1fr_auto] overflow-x-hidden">
         <Navbar />
+        <DottedBg />
         <main className="main-container min-w-0 overflow-x-hidden">
           <Routes>
             <Route path="/" element={<Home />} />
