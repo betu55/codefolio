@@ -19,7 +19,7 @@ const App = () => {
       <div className="mx-auto grid min-h-screen w-full max-w-full grid-rows-[auto_1fr_auto] overflow-x-hidden">
         <Navbar />
         <DottedBg />
-        <main className="main-container min-w-0 overflow-x-hidden">
+        <main className="main-container min-w-0 overflow-x-clip">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Home />} />
