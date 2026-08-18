@@ -17,7 +17,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const navbarLinks = isAdmin ? 
-  ["Home", "Projects", "Experience", "Contact", "Tracker"]:
+  ["Home", "About Me", "Projects", "Experience", "Contact", "Tracker"]:
   ["Home", "Projects", "Experience", "Contact"];
 
   const handleLogout = (isAdmin) => {
